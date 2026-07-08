@@ -10,3 +10,14 @@ A data engineering pipeline built on top of [Rang Shop WebApp](https://github.co
 
 ## Data Flow
 ![Data Flow](docs/architecture.png)
+
+### Data Quality Checks
+
+#### dbt test
+- `unique` — no duplicate primary keys
+- `not_null` — required fields are present
+- `accepted_values` — status fields contain valid values
+
+#### Airflow checks
+- `check_new_orders` — skip pipeline if no new data in last 10 minutes
+- `check_results` — raise error if any dbt model failed

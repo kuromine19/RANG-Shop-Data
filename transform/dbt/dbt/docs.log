@@ -1,0 +1,7 @@
+nohup: ignoring input
+[0m07:26:52  Running with dbt=1.11.11
+[0m07:26:52  Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/dpp/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
