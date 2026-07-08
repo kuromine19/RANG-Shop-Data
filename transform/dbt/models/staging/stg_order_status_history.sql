@@ -9,7 +9,7 @@ lead(changed_at) over(
 ) as status_trans_time,
 row_number() over(
 	partition by order_id
-	order_by changed_at
+	order by changed_at
 ) as status_sequence
 from {{source('app','order_status_history')}}
 where status is not null
