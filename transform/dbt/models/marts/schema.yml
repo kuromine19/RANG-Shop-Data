@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: daily_revenue
+    description: "Daily revenue aggregated from delivered orders only"
+    columns:
+      - name: record_date
+        tests:
+          - not_null
+      - name: total_orders
+        tests:
+          - not_null
+      - name: revenue
+        tests:
+          - not_null
+
+  - name: product_performance
+    description: "Product sales performance aggregated from order items"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: total_revenue
+        tests:
+          - not_null
+
+  - name: funnel_analysis
+    description: "Conversion funnel from page view to delivered order"
+    columns:
+      - name: total_sessions
+        tests:
+          - not_null
+
+  - name: order_operations
+    description: "Order lifecycle with processing time per status"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+
+  - name: customer_behavior
+    description: "Session-level customer behavior with conversion flag"
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null

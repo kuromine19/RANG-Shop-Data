@@ -1,0 +1,96 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Cleaned and standardized orders from schema app"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: session_id
+        tests:
+          - not_null
+      - name: customer_name
+        tests:
+          - not_null
+      - name: customer_phone
+        tests:
+          - not_null
+      - name: total_amount
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['pending', 'confirmed', 'delivering', 'delivered', 'cancelled']
+      - name: payment_method
+        tests:
+          - accepted_values:
+              values: ['cod', 'bank_transfer', 'momo']
+
+  - name: stg_order_items
+    description: "Cleaned order items with subtotal validation"
+    columns:
+      - name: order_item_id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+      - name: quantity
+        tests:
+          - not_null
+      - name: unit_price
+        tests:
+          - not_null
+
+  - name: stg_order_status_history
+    description: "Order status change history with sequence tracking"
+    columns:
+      - name: history_id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['pending', 'confirmed', 'delivering', 'delivered', 'cancelled']
+      - name: changed_at
+        tests:
+          - not_null
+
+  - name: stg_behavior_logs
+    description: "Filtered and cleaned behavior events from app_events schema"
+    columns:
+      - name: log_id
+        tests:
+          - unique
+          - not_null
+      - name: session_id
+        tests:
+          - not_null
+      - name: event_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['page_view', 'product_view', 'add_to_cart', 'remove_from_cart', 'cart_view', 'checkout_start', 'checkout_complete']
+      - name: event_at
+        tests:
+          - not_null
+
+  - name: stg_sessions
+    description: "Cleaned session data with duration calculation"
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+      - name: session_start
+        tests:
+          - not_null
