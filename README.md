@@ -20,4 +20,3 @@ A data engineering pipeline built on top of [Rang Shop WebApp](https://github.co
 
 #### Airflow checks
 - `check_new_orders` — skip pipeline if no new data in last 10 minutes
-- `check_results` — raise error if any dbt model failed
