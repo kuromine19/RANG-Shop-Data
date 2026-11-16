@@ -1,7 +1,5 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from airflow import DAG
-from airflow.operators.bash import BashOperator
 from airflow.operators.python import ShortCircuitOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from datetime import datetime, timedelta
